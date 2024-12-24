@@ -9,6 +9,7 @@ import Cart from "./components/Cart";
 function App() {
   const [menuData, setMenuData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [menuCategories, setMenuCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null); // 선택된 카테고리
 
   const fetchData = async (url) => {
@@ -24,45 +25,21 @@ function App() {
 
   useEffect(() => {
     const fetchAllData = async () => {
-      if (!selectedCategory) return; // 선택된 카테고리가 없으면 함수 종료
+      if (!selectedCategory) return;
       try {
-        const [
-          menuCategoryData,
-          setListData,
-          cutletListData,
-          noodleListData,
-          sideListData,
-        ] = await Promise.all(
-          // fetchData("http://localhost:3000/menuCategory"),
-          // fetchData("http://localhost:3000/setList"),
-          // fetchData("http://localhost:3000/cutletList"),
-          // fetchData("http://localhost:3000/noodleList"),
-          // fetchData("http://localhost:3000/sideList"),
-          fetchData(`http://localhost:3000/categories/${selectedCategory}`)
-        );
-
-        // 데이터 병합 (예시)
-        const combinedData = [
-          ...menuCategoryData,
-          ...setListData,
-          ...cutletListData,
-          ...noodleListData,
-          ...sideListData,
-        ];
-
-        setMenuData(combinedData);
+        const fetchedData = await fetchData(`http://localhost:3000/${selectedCategory}`);
+        setMenuData(fetchedData);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
-        setIsLoading(false); // 에러 발생 시에도 로딩 상태 해제
+        setIsLoading(false);
       }
     };
 
     fetchAllData();
-  }, [selectedCategory]);
+  }, []);
 
-  const filterMenuList = (categoryId) => {
-    return menuData.filter((item) => item.category === categoryId);
+  const filterMenuList = menuData.filter((item) => item.categoryId === selectedCategory);
   };
 
   const filteredList = filterMenuList(selectedCategory);
@@ -119,5 +96,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
