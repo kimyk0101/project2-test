@@ -1,6 +1,6 @@
 {
     "menuCategory": [
-    { "id": 1000, "title": "세트" },
+    { "id": 1000, "title": "세트" },  //a,b,c,d
     { "id": 2000, "title": "돈카츠" },
     { "id": 3000, "title": "면/밥" },
     { "id": 4000, "title": "사이드" }

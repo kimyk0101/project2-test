@@ -63,6 +63,7 @@ function App() {
 
   const [selectedCategory, setSelectedCategory] = useState(null); // 선택된 카테고리
 
+  //  100 > a
   const filterMenuList = (category) => {
     switch (category) {
       case 1:
