@@ -1,39 +1,46 @@
 import PropTypes from "prop-types";
-// import styled from "styled-components";
+import styled from "styled-components";
 
-// const Wrapping = styled.div`
-//   width: 100%;
-//   height: 100px;
-//   background-color: pink;
-//   text-align: center;
-//   line-height: 100px;
-// `;
-// const CategoryBox = styled.span`
-//   width: 300px;
-//   height: 100px;
-//   background-color: lightblue;
-//   border: 2px solid black;
-//   border-radius: 10px;
-// `;
-function MenuCategory({ menuCategory, setSelectedCategory }) {
+/* styled-components */
+const Wrapping = styled.div`
+  width: 1100px;
+  height: 70px;
+  background-color: #8b4513;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const CategoryBox = styled.span`
+  width: 25%;
+  height: 100%;
+  background-color: #c19a6b;
+  border: 1px solid #8b4513;
+  margin: 0 2px;
+  border-radius: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+
+/* MenuCategory-components */
+function MenuCategory({ categoryData, setSelectedCategory }) {
   return (
-    <article>
+    <Wrapping>
       {/* 메뉴 카테고리 리스트 */}
-      <ul>
-        {menuCategory.map((category) => (
-          <li //  CategoryBox
-            key={category.category}
-            onClick={() => setSelectedCategory(category.category)}
-          >
-            {category.title}
-          </li> //  CategoryBox
-        ))}
-      </ul>
-    </article> //  Wrapping
+      {categoryData.map((item) => (
+        <CategoryBox key={item.id} onClick={() => setSelectedCategory(item.id)}>
+          {item.title}
+        </CategoryBox>
+      ))}
+    </Wrapping>
   );
 }
 MenuCategory.propTypes = {
-  menuCategory: PropTypes.array,
+  categoryData: PropTypes.array,
   setSelectedCategory: PropTypes.func,
 };
 export default MenuCategory;

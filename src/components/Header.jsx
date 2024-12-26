@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+/* styled-components */
 const Wrapper = styled.div`
   padding: 1em;
   background: purple;
@@ -10,6 +11,8 @@ const Title = styled.h1`
   text-align: center;
   width: 100%;
 `;
+
+/* Header-components */
 function Header() {
   return (
     <Wrapper>
