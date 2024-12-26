@@ -63,7 +63,7 @@ function MenuList({
       ? noodleData
       : selectedCategory === "D"
       ? sideData
-      : [];
+      : setData; //  []으로 설정하면 첫 화면에 아무런 리스트도 안나오게끔, setData는 setData가 기본으로 나오게끔 설정
 
   const toCart = (itemId) => {
     isCart(itemId);

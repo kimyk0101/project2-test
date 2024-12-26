@@ -32,7 +32,12 @@ function MenuCategory({ categoryData, setSelectedCategory }) {
     <Wrapping>
       {/* 메뉴 카테고리 리스트 */}
       {categoryData.map((item) => (
-        <CategoryBox key={item.id} onClick={() => setSelectedCategory(item.id)}>
+        <CategoryBox
+          key={item.id}
+          onClick={() => {
+            setSelectedCategory(item.id);
+          }}
+        >
           {item.title}
         </CategoryBox>
       ))}

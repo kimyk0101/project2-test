@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import MenuCategory from "./components/MenuCategory";
 import MenuList from "./components/MenuList";
 import Cart from "./components/Cart";
+import MainScreen from "./components/MainScreen";
+// import MenuScreen from "./components/MenuScreen";
 
 function App() {
   const [categoryData, setCategoryData] = useState([]);
@@ -112,6 +115,11 @@ function App() {
 
   return (
     <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainScreen />} />
+        </Routes>
+      </Router>
       <Header />
       <MenuCategory
         categoryData={categoryData}
