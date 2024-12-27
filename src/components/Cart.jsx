@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
+import i18n from "../i18n";
 
 /* styled-components */
 const Wrapper = styled.div`
@@ -97,6 +99,7 @@ function Cart({
   isCartZero,
   allCartZero,
 }) {
+  const { allData } = useContext(LanguageContext);
   {
     /* 장바구니 총 금액 */
   }
@@ -139,7 +142,7 @@ function Cart({
 
   return (
     <Wrapper>
-      <StyledH1>장 바 구 니</StyledH1>
+      <StyledH1>{allData("cart")}</StyledH1>
       <StyledUl>
         {items.map((item) => (
           <li key={item.id}>
@@ -154,17 +157,25 @@ function Cart({
               </ButtonAmountControl>
               &nbsp;&nbsp;
               <ButtonAmountControl onClick={() => makeCartZero(item.id)}>
-                삭제
+                {allData("delete")}
               </ButtonAmountControl>
             </RightSide>
           </li>
         ))}
       </StyledUl>
-      <StyledH1>주문수량 : {totalAmount}개</StyledH1>
-      <StyledH1>총 금액 : {totalPrice}원</StyledH1>
+      <StyledH1>
+        {allData("totalAmount")}
+        {totalAmount}
+        {allData("items")}
+      </StyledH1>
+      <StyledH1>
+        {allData("totalPrice")}
+        {totalPrice}
+        {allData("won")}
+      </StyledH1>
       <Style02>
-        <Button1 onClick={() => makeAllZero()}>전체삭제</Button1>
-        <Button2>결제</Button2>
+        <Button1 onClick={() => makeAllZero()}>{t("deleteAll")}</Button1>
+        <Button2>{allData("payment")}</Button2>
       </Style02>
     </Wrapper>
   );

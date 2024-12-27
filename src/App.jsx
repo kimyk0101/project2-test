@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import i18n from "./i18n";
 
 import MainScreen from "./components/MainScreen";
 import Header from "./components/Header";
@@ -24,11 +25,11 @@ function App() {
           noodleListResponse,
           sideListResponse,
         ] = await Promise.all([
-          fetch("http://localhost:3000/menuCategory"),
-          fetch("http://localhost:3000/setList"),
-          fetch("http://localhost:3000/cutletList"),
-          fetch("http://localhost:3000/noodleList"),
-          fetch("http://localhost:3000/sideList"),
+          fetch(`http://localhost:3000/menuCategory?language=${language}`),
+          fetch(`http://localhost:3000/setList?language=${language}`),
+          fetch(`http://localhost:3000/cutletList?language=${language}`),
+          fetch(`http://localhost:3000/noodleList?language=${language}`),
+          fetch(`http://localhost:3000/sideList?language=${language}`),
         ]);
 
         const data1 = await menuCategoryResponse.json();
@@ -42,6 +43,7 @@ function App() {
         setCutletData(data3);
         setNoodleData(data4);
         setSideData(data5);
+        setAllData(allData);
 
         setAllMenuLists([...data2, ...data3, ...data4, ...data5]); // 데이터 병합: set, cutlet, noodle, side
       } catch (error) {
@@ -50,7 +52,7 @@ function App() {
     };
 
     fetchData();
-  }, []);
+  }, [language]);
 
   const [selectedCategory, setSelectedCategory] = useState(null); // 선택된 카테고리(클릭 이벤트)
 
@@ -112,40 +114,53 @@ function App() {
     );
   };
 
+  //  언어 선택
+  const [language, setLanguage] = useState("ko");
+  const [allData, setAllData] = useState({}); // 모든 데이터를 저장할 상태
+
+  const handleLanguageChange = (newLanguage) => {
+    setLanguage(newLanguage);
+    i18n.changeLanguage(newLanguage);
+  };
+
   return (
     <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<MainScreen />} />
-          <Route
-            path="/menu"
-            element={
-              <>
-                <Header />
-                <MenuCategory
-                  categoryData={categoryData}
-                  setSelectedCategory={setSelectedCategory}
-                />
-                <MenuList
-                  isCart={isCart}
-                  setData={setData}
-                  cutletData={cutletData}
-                  noodleData={noodleData}
-                  sideData={sideData}
-                  selectedCategory={selectedCategory}
-                />
-                <Cart
-                  items={boughtItems}
-                  handleIncrement={handleIncrement}
-                  handleDecrease={handleDecrease}
-                  isCartZero={isCartZero}
-                  allCartZero={allCartZero}
-                />
-              </>
-            }
-          />
-        </Routes>
-      </Router>
+      <LanguageContext.Provider value={{ language, handleLanguageChange }}>
+        <div>
+          <Router>
+            <Routes>
+              <Route path="/" element={<MainScreen />} />
+              <Route
+                path="/menu"
+                element={
+                  <>
+                    <Header />
+                    <MenuCategory
+                      categoryData={categoryData}
+                      setSelectedCategory={setSelectedCategory}
+                    />
+                    <MenuList
+                      isCart={isCart}
+                      setData={setData}
+                      cutletData={cutletData}
+                      noodleData={noodleData}
+                      sideData={sideData}
+                      selectedCategory={selectedCategory}
+                    />
+                    <Cart
+                      items={boughtItems}
+                      handleIncrement={handleIncrement}
+                      handleDecrease={handleDecrease}
+                      isCartZero={isCartZero}
+                      allCartZero={allCartZero}
+                    />
+                  </>
+                }
+              />
+            </Routes>
+          </Router>
+        </div>
+      </LanguageContext.Provider>
     </div>
   );
 }

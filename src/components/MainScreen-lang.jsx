@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import i18n from "./../i18n";
+import { useTranslation } from "react-i18next";
+import i18n from "/src/i18n";
 
 function MainScreen() {
   const navigate = useNavigate();
@@ -10,23 +11,7 @@ function MainScreen() {
     navigate("/menu"); // 메뉴 화면으로 이동
   };
 
-  const videoRef = useRef(null); // video 태그 참조
-  const [isPlaying, setIsPlaying] = useState(true); // 재생 상태 관리
-
-  // 동영상 재생 /정지 토글
-  const togglePlayPause = () => {
-    if (videoRef.current.paused) {
-      videoRef.current.play();
-      setIsPlaying(true);
-    } else {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    }
-  };
-
   const [selectedLanguage, setSelectedLanguage] = useState("ko"); // 기본언어는 한국어 설정
-
-  const { handleLanguageChange } = useContext(LanguageContext);
 
   // 다국어 데이터
   const languageData = {
@@ -44,14 +29,18 @@ function MainScreen() {
       pause: "Pause",
       languages: "Select Language",
     },
-    // 일본어
-    jp: {
-      message: "画面をタッチしてメニューに移動",
-      play: "再生",
-      pause: "一時停止",
-      languages: "言語選択",
-    },
   };
+
+  // const handleLanguageChange = (language) => {
+  //   i18n.changeLanguage(language); // 선택된 언어로 변경
+  //   setSelectedLanguage(language); // 상태 업데이트
+  // };
+
+
+    // 언어 선택 이벤트 처리
+    const handleLanguageChange = (language) => {
+      setSelectedLanguage(language);
+    };
 
   return (
     <div
@@ -64,63 +53,8 @@ function MainScreen() {
         cursor: "pointer",
       }}
     >
-      {/* 동영상 추가 */}
-      <video
-        ref={videoRef}
-        autoPlay
-        loop
-        muted
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          zIndex: -1,
-        }}
-      >
-        <source src="/src/video/video-sufer.mp4.mp4" type="video/mp4" />
-      </video>
-      {/* 재생/정지 버튼 */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: "20px",
-          right: "20px",
-          backgroundColor: "rgba(0, 0, 0, 0.6)",
-          color: "#fff",
-          padding: "10px 20px",
-          borderRadius: "5px",
-          cursor: "pointer",
-          zIndex: 1,
-          fontSize: "16px",
-        }}
-        onClick={(e) => {
-          e.stopPropagation(); //  버튼 클릭 시 부모의 터치 이벤트 방지
-          togglePlayPause();
-        }}
-      >
-        {isPlaying
-          ? languageData[selectedLanguage].pause
-          : languageData[selectedLanguage].play}
-      </div>
       {/* 언어 선택 */}
-      <div
-        style={{
-          position: "absolute",
-          top: "20px",
-          right: "20px",
-          backgroundColor: "rgba(0, 0, 0, 0.6)",
-          color: "#fff",
-          padding: "10px",
-          borderRadius: "5px",
-          zIndex: 1,
-          display: "flex",
-          flexDirection: "column",
-          gap: "10px",
-        }}
-      >
+      <div>
         <span style={{ fontWeight: "bold", marginBottom: "5px" }}>
           {languageData[selectedLanguage].languages}
         </span>
@@ -137,11 +71,11 @@ function MainScreen() {
               cursor: "pointer",
             }}
             onClick={(e) => {
-              e.stopPropagation();
+              e.stopPropagation(); //  언어 선택 후 바로 메뉴 화면으로 넘어가지 않도록
               handleLanguageChange(language);
             }}
           >
-            {language.toUpperCase()}
+            {language}
           </button>
         ))}
       </div>
