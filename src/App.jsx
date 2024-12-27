@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import MainScreen from "./components/MainScreen";
 import Header from "./components/Header";
 import MenuCategory from "./components/MenuCategory";
 import MenuList from "./components/MenuList";
 import Cart from "./components/Cart";
-import MainScreen from "./components/MainScreen";
-// import MenuScreen from "./components/MenuScreen";
 
 function App() {
   const [categoryData, setCategoryData] = useState([]);
@@ -118,28 +117,35 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<MainScreen />} />
+          <Route
+            path="/menu"
+            element={
+              <>
+                <Header />
+                <MenuCategory
+                  categoryData={categoryData}
+                  setSelectedCategory={setSelectedCategory}
+                />
+                <MenuList
+                  isCart={isCart}
+                  setData={setData}
+                  cutletData={cutletData}
+                  noodleData={noodleData}
+                  sideData={sideData}
+                  selectedCategory={selectedCategory}
+                />
+                <Cart
+                  items={boughtItems}
+                  handleIncrement={handleIncrement}
+                  handleDecrease={handleDecrease}
+                  isCartZero={isCartZero}
+                  allCartZero={allCartZero}
+                />
+              </>
+            }
+          />
         </Routes>
       </Router>
-      <Header />
-      <MenuCategory
-        categoryData={categoryData}
-        setSelectedCategory={setSelectedCategory}
-      />
-      <MenuList
-        isCart={isCart}
-        setData={setData}
-        cutletData={cutletData}
-        noodleData={noodleData}
-        sideData={sideData}
-        selectedCategory={selectedCategory}
-      />
-      <Cart
-        items={boughtItems}
-        handleIncrement={handleIncrement}
-        handleDecrease={handleDecrease}
-        isCartZero={isCartZero}
-        allCartZero={allCartZero}
-      ></Cart>
     </div>
   );
 }

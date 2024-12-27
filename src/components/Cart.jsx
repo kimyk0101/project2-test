@@ -170,41 +170,6 @@ function Cart({
   );
 }
 
-/*
-return (
-  <Wrapper>
-    <StyledH1>장 바 구 니</StyledH1>
-    <StyledUl>
-      {items.map((item) => (
-        <li key={item.id}>
-          <Menu>{item.name}</Menu>
-          <RightSide>
-            <ButtonAmountControl onClick={() => handleDecrease(item.id)}>
-              -
-            </ButtonAmountControl>
-            &nbsp;{item.isCart}&nbsp;
-            <ButtonAmountControl onClick={() => handleIncrement(item.id)}>
-              +
-            </ButtonAmountControl>
-            &nbsp;&nbsp;
-            <ButtonAmountControl onClick={() => isCartZero(item.id)}>
-              삭제
-            </ButtonAmountControl>
-          </RightSide>
-        </li>
-      ))}
-    </StyledUl>
-    <StyledH1>주문수량 : {totalAmount}개</StyledH1>
-    <StyledH1>총 금액 : {totalPrice}원</StyledH1>
-    <Style02>
-      <Button1 onClick={() => allCartZero()}>전체삭제</Button1>
-      <Button2>결제</Button2>
-    </Style02>
-  </Wrapper>
-);
-}
-*/
-
 Cart.propTypes = {
   items: PropTypes.array,
   handleIncrement: PropTypes.func,
