@@ -1,0 +1,52 @@
+{
+    "menuCategory": [
+    { "id": "A", "title": "menu:set"},
+    { "id": "B", "title": "menu:cultlet"},
+    { "id": "C", "title": "menu:noodle"},
+    { "id": "D", "title": "menu:side"}
+  ],
+"setList": [
+    { "id": 1, "name": "menu:set:1", "price": 9000, "isCart": 0},
+    { "id": 2, "name": "menu:set:2", "price": 13000, "isCart": 0},
+    { "id": 3, "name": "menu:set:3", "price": 13000, "isCart": 0},
+    { "id": 4, "name": "menu:set:4", "price": 13000, "isCart": 0},
+    { "id": 5, "name": "menu:set:5", "price": 13000, "isCart": 0},
+    { "id": 6, "name": "menu:set:6", "price": 13000, "isCart": 0},
+    { "id": 7, "name": "menu:set:7", "price": 13000, "isCart": 0},
+    { "id": 8, "name": "menu:set:8", "price": 13000, "isCart": 0}
+  ],
+"cutletList" : [
+    { "id": 101, "name": "menu:cultlet:101", "price": 11000, "isCart": 0},
+    { "id": 102, "name": "menu:cultlet:102", "price": 15000, "isCart": 0},
+    { "id": 103, "name": "menu:cultlet:103", "price": 12000, "isCart": 0},
+    { "id": 104, "name": "menu:cultlet:104", "price": 11000, "isCart": 0},
+    { "id": 105, "name": "menu:cultlet:105", "price": 11000, "isCart": 0},
+    { "id": 106, "name": "menu:cultlet:106", "price": 12000, "isCart": 0},
+    { "id": 107, "name": "menu:cultlet:107", "price": 11000, "isCart": 0},
+    { "id": 108, "name": "menu:cultlet:108", "price": 12000, "isCart": 0},
+    { "id": 109, "name": "menu:cultlet:109", "price": 13000, "isCart": 0},
+    { "id": 110, "name": "menu:cultlet:110", "price": 13000, "isCart": 0}
+  ],
+"noodleList" : [
+    { "id": 201, "name": "menu:noodle:201", "price": 8000, "isCart": 0},
+    { "id": 202, "name": "menu:noodle:202", "price": 8000, "isCart": 0},
+    { "id": 203, "name": "menu:noodle:203", "price": 8000, "isCart": 0},
+    { "id": 204, "name": "menu:noodle:204", "price": 8000, "isCart": 0},
+    { "id": 205, "name": "menu:noodle:205", "price": 8000, "isCart": 0},
+    { "id": 206, "name": "menu:noodle:206", "price": 7000, "isCart": 0},
+    { "id": 207, "name": "menu:noodle:207", "price": 7000, "isCart": 0},
+    { "id": 208, "name": "menu:noodle:208", "price": 10000, "isCart": 0},
+    { "id": 209, "name": "menu:noodle:209", "price": 9000, "isCart": 0},
+    { "id": 210, "name": "menu:noodle:210", "price": 9000, "isCart": 0}
+  ],
+"sideList" :[
+    { "id": 301, "name": "menu:side:1", "price": 2000, "isCart": 0},
+    { "id": 302, "name": "menu:side:2", "price": 2000, "isCart": 0},
+    { "id": 303, "name": "menu:side:3", "price": 1000, "isCart": 0},
+    { "id": 304, "name": "menu:side:4", "price": 1000, "isCart": 0},
+    { "id": 305, "name": "menu:side:5", "price": 1000, "isCart": 0},
+    { "id": 306, "name": "menu:side:6", "price": 3000, "isCart": 0},
+    { "id": 307, "name": "menu:side:7", "price": 2500, "isCart": 0},
+    { "id": 308, "name": "menu:side:8", "price": 2000, "isCart": 0}
+  ]
+}

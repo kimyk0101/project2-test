@@ -57,6 +57,10 @@
     "deleteAll": "deleteAll",
     "payment": "payment",
     "won": "won",
-    "items": ""
+    "items": "",
+    "message": "Touch the screen to go the menu",
+    "play": "play",
+    "pause": "Pause",
+    "languages": "Select Language"
   }
 }

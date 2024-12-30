@@ -57,6 +57,10 @@
     "deleteAll": "전체삭제",
     "payment": "결제",
     "won": "원",
-    "items": "개"
+    "items": "개",
+    "message": "화면을 터치하여 메뉴로 이동",
+    "play": "재생",
+    "pause": "정지",
+    "languages": "언어 선택"
   }
 }
