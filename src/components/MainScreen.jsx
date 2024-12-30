@@ -1,27 +1,63 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import i18n from "/src/i18n.js";
-import { useTranslation } from "react-i18next";
+import { QRCodeCanvas } from "qrcode.react";
 
 function MainScreen() {
   const navigate = useNavigate();
-  const { t } = useTranslation();
-
   // 화면 터치 시 다음 화면으로 이동
-  const handleTouch = () => {
-    navigate("/menu"); // 메뉴 화면으로 이동
+  const handleTouchKO = () => {
+    navigate("/menu"); // 한국어 메뉴 화면으로 이동
+  };
+  const handleTouchEN = () => {
+    navigate("/ENmenu"); // 영어 메뉴 화면으로 이동
   };
 
+  const videoRef = useRef(null); // video 태그 참조
+  const [isPlaying, setIsPlaying] = useState(true); // 재생 상태 관리
+
+  // 동영상 재생 /정지 토글
+  const togglePlayPause = () => {
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+  };
+  //    언어 선택
   const [selectedLanguage, setSelectedLanguage] = useState("ko"); // 기본언어는 한국어 설정
-
+  // 언어 선택 이벤트 처리
   const handleLanguageChange = (language) => {
-    i18n.changeLanguage(language); // 선택된 언어로 변경
-    setSelectedLanguage(language); // 상태 업데이트
+    setSelectedLanguage(language);
   };
 
+  // 다국어 데이터
+  const languageData = {
+    // 한국어
+    ko: {
+      message: "화면을 터치하여 메뉴로 이동",
+      play: "재생",
+      pause: "정지",
+      languages: "언어 선택",
+    },
+    // 영어
+    en: {
+      message: "Touch the screen to go the menu",
+      play: "play",
+      pause: "Pause",
+      languages: "Select Language",
+    },
+    // 일본어
+    jp: {
+      message: "画面をタッチしてメニューに移動",
+      play: "再生",
+      pause: "一時停止",
+      languages: "言語選択",
+    },
+  };
   return (
     <div
-      onClick={handleTouch}
       style={{
         position: "relative",
         width: "100%",
@@ -30,60 +66,157 @@ function MainScreen() {
         cursor: "pointer",
       }}
     >
-      {/* 언어 선택 */}
-      <div>
-        <button
-          onClick={(e) => {
-            e.stopPropagation(); //  언어 선택 후 바로 메뉴 화면으로 넘어가지 않도록
-            handleLanguageChange("ko");
-          }}
-          style={{
-            backgroundColor: selectedLanguage === "ko" ? "#FFD700" : "#fff",
-            color: selectedLanguage === "ko" ? "#000" : "#000",
-            border: "1px, solid, black",
-            padding: "10px",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-        >
-          {t("translations:languages")}
-        </button>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            handleLanguageChange("en");
-          }}
-          style={{
-            backgroundColor: selectedLanguage === "en" ? "#FFD700" : "#fff",
-            color: selectedLanguage === "en" ? "#000" : "#000",
-            border: "1px, solid, black",
-            padding: "10px",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-        >
-          {t("translations:languages")}
-        </button>
-      </div>
-      {/* 안내 텍스트 */}
+
+      {/* 동영상 추가 */}
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          zIndex: -1,
+        }}
+      >
+        <source src="/src/video/video-sufer.mp4.mp4" type="video/mp4" />
+      </video>
+
+      {/* 재생/정지 버튼 */}
       <div
         style={{
           position: "absolute",
+          bottom: "20px",
+          right: "20px",
+          backgroundColor: "rgba(0, 0, 0, 0.6)",
+          color: "#fff",
+          padding: "10px 20px",
+          borderRadius: "5px",
+          cursor: "pointer",
+          zIndex: 1,
+          fontSize: "25px",
+        }}
+        onClick={(e) => {
+          e.stopPropagation(); //  버튼 클릭 시 부모의 터치 이벤트 방지
+          togglePlayPause();
+        }}
+      >
+        {isPlaying
+          ? languageData[selectedLanguage].pause
+          : languageData[selectedLanguage].play}
+      </div>
+      {/* 언어 선택 */}
+      <div
+        style={{
+          position: "absolute",
+          top: "20px",
+          right: "20px",
+          backgroundColor: "rgba(0, 0, 0, 0.6)",
+          color: "#fff",
+          padding: "10px",
+          borderRadius: "5px",
+          zIndex: 1,
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          fontSize: "25px",
+        }}
+      >
+        <span style={{ fontWeight: "bold", marginBottom: "5px" }}>
+          {languageData[selectedLanguage].languages}
+        </span>
+        {Object.keys(languageData).map((language) => (
+          <button
+            key={language}
+            style={{
+              backgroundColor:
+                selectedLanguage === language ? "#FFD700" : "#fff",
+              color: selectedLanguage === language ? "#000" : "#000",
+              border: "none",
+              padding: "10px",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleLanguageChange(language);
+            }}
+          >
+            {language.toUpperCase()}
+          </button>
+        ))}
+      </div>
+      {/* 안내 텍스트 */}
+      <div
+        onClick={() => {
+          switch (selectedLanguage) {
+              case 'ko':
+                  navigate('/menu');
+                  break;
+              case 'en':
+                  navigate('/ENmenu');
+                  break;
+              default:
+                  console.error('Invalid language');
+          }
+      }}
+        style={{
+          position: "absolute",
+          width: "1100px",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           color: "#fff",
           textAlign: "center",
-          fontSize: "2rem",
+          fontSize: "70px",
           fontWeight: "bold",
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           padding: "20px",
           borderRadius: "10px",
         }}
       >
-        {t(`${selectedLanguage}:translations:message`)}
+        {" "}
+        {languageData[selectedLanguage].message}
+      </div>
+      {/* QR 코드 */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "20px",
+          left: "20px",
+          backgroundColor: "rgba(255, 255, 255, 0.8)",
+          padding: "10px",
+          borderRadius: "5px",
+        }}
+      >
+        <div style={{ position: "relative", width: "150px", height: "150px" }}>
+          <QRCodeCanvas
+            value="http://localhost:5173/menu" // QR 코드로 인코딩할 URL
+            size={150}
+            bgColor="#ffffff"
+            fgColor="#000000"
+            level="Q"
+          />
+          <img
+            src="/image.png" // 삽입할 이미지의 경로
+            alt="QR LOGO"
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "50px",
+              height: "50px",
+            }}
+          />
+        </div>
       </div>
     </div>
   );
 }
+
 export default MainScreen;

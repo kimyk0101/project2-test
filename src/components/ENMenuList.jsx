@@ -76,7 +76,7 @@ function MenuList({
         <MenuBox key={item.id} onClick={() => toCart(item.id)}>
           <Img src={`/src/images/${item.id}.jpeg`} alt={item.name}></Img>
           <ItemInfo>{item.name}</ItemInfo>
-          <ItemInfo>- {item.price}원</ItemInfo>
+          <ItemInfo>- {item.price}WON</ItemInfo>
         </MenuBox>
       ))}
     </Wrap>

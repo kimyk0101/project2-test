@@ -151,7 +151,7 @@ function Cart({
 
   return (
     <Wrapper>
-      <StyledH1>장 바 구 니</StyledH1>
+      <StyledH1>CART</StyledH1>
       <StyledUl>
         {items.map((item) => (
           <li key={item.id}>
@@ -166,17 +166,17 @@ function Cart({
               </ButtonAmountControl>
               &nbsp;&nbsp;
               <ButtonAmountControl onClick={() => makeCartZero(item.id)}>
-                삭제
+                DELETE
               </ButtonAmountControl>
             </RightSide>
           </li>
         ))}
       </StyledUl>
-      <StyledH1>주문수량 : {totalAmount}개</StyledH1>
-      <StyledH1>총 금액 : {totalPrice}원</StyledH1>
+      <StyledH1>TOTALAMOUNT : {totalAmount}</StyledH1>
+      <StyledH1>TOTALPRICE : {totalPrice}WON</StyledH1>
       <Style02>
-        <Button1 onClick={() => makeAllZero()}>전체삭제</Button1>
-        <Button2 onClick={handlePaymentButtonClick}>결제</Button2>
+        <Button1 onClick={() => makeAllZero()}>ALL-DELETE</Button1>
+        <Button2 onClick={handlePaymentButtonClick}>PAYMENT</Button2>
       </Style02>
       {isPaymentScreenVisible ? (
         <PaymentScreen

@@ -1,0 +1,30 @@
+{
+    "ko": {
+      "cart": "장바구니",
+      "totalAmount": "주문수량 : ",
+      "totalPrice": "총 금액 : ",
+      "delete": "삭제",
+      "deleteAll": "전체삭제",
+      "payment": "결제",
+      "won": "원",
+      "items": "개",
+      "message": "화면을 터치하여 메뉴로 이동",
+      "play": "재생",
+      "pause": "정지",
+      "languages": "언어 선택"
+    },
+    "en": {
+            "cart": "cart",
+            "totalAmount": "totalAmount : ",
+            "totalPrice": "totalPrice : ",
+            "delete": "delete",
+            "deleteAll": "deleteAll",
+            "payment": "payment",
+            "won": "won",
+            "items": "",
+            "message": "Touch the screen to go the menu",
+            "play": "play",
+            "pause": "Pause",
+            "languages": "Select Language"
+    }
+}

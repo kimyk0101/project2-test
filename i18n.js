@@ -1,6 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import menuData from '../db.json';
+import '../db.json';
 import i18nData from '../i18n.json';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
@@ -12,16 +12,12 @@ i18n
         ko: {
           translation: {
             ...i18nData.ko.translation,
-            ...menuTranslations
           },
-          menu: menuData // 메뉴 데이터는 별도로 관리
         },
         en: {
           translation: {
             ...i18nData.en.translation,
-            ...menuTranslations
           },
-          menu: menuData
         }
       },
     lng: 'ko', // 기본 언어

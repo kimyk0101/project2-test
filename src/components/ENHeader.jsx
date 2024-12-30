@@ -29,7 +29,7 @@ function Header() {
   };
   return (
     <Wrapper>
-      <Title>HA.MI 돈카츠</Title>
+      <Title>HA.MI DONCATSU</Title>
       <img
         src="/src/images/Home.svg"
         style={{
