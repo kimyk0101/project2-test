@@ -1,15 +1,21 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+// KO
 import MainScreen from "/src/components/MainScreen";
-import Header from "/src/components/Header";
-import MenuCategory from "/src/components/MenuCategory";
-import MenuList from "/src/components/MenuList";
-import Cart from "/src/components/Cart";
-import ENHeader from "/src/components/ENHeader";
-import ENMenuCategory from "/src/components/ENMenuCategory";
-import ENMenuList from "/src/components/ENMenuList";
-import ENCart from "/src/components/ENCart";
+import Header from "/src/components/KO/Header";
+import MenuCategory from "/src/components/KO/MenuCategory";
+import MenuList from "/src/components/KO/MenuList";
+import Cart from "/src/components/KO/Cart";
+// EN
+import ENHeader from "/src/components/EN/ENHeader";
+import ENMenuCategory from "/src/components/EN/ENMenuCategory";
+import ENMenuList from "/src/components/EN/ENMenuList";
+import ENCart from "/src/components/EN/ENCart";
+// JP
+import JPHeader from "/src/components/JP/JPHeader";
+import JPMenuCategory from "/src/components/JP/JPMenuCategory";
+import JPMenuList from "/src/components/JP/JPMenuList";
+import JPCart from "/src/components/JP/JPCart";
 
 function App() {
   const [categoryData, setCategoryData] = useState([]);
@@ -22,6 +28,11 @@ function App() {
   const [ENcutletData, setENCutletData] = useState([]);
   const [ENnoodleData, setENNoodleData] = useState([]);
   const [ENsideData, setENSideData] = useState([]);
+  const [JPcategoryData, setJPCategoryData] = useState([]);
+  const [JPsetData, setJPSetData] = useState([]);
+  const [JPcutletData, setJPCutletData] = useState([]);
+  const [JPnoodleData, setJPNoodleData] = useState([]);
+  const [JPsideData, setJPSideData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +48,11 @@ function App() {
           ENcutletListResponse,
           ENnoodleListResponse,
           ENsideListResponse,
+          JPmenuCategoryResponse,
+          JPsetListResponse,
+          JPcutletListResponse,
+          JPnoodleListResponse,
+          JPsideListResponse,
         ] = await Promise.all([
           fetch("http://localhost:3000/menuCategory"),
           fetch("http://localhost:3000/setList"),
@@ -48,6 +64,11 @@ function App() {
           fetch("http://localhost:3000/en-cutletList"),
           fetch("http://localhost:3000/en-noodleList"),
           fetch("http://localhost:3000/en-sideList"),
+          fetch("http://localhost:3000/jp-menuCategory"),
+          fetch("http://localhost:3000/jp-setList"),
+          fetch("http://localhost:3000/jp-cutletList"),
+          fetch("http://localhost:3000/jp-noodleList"),
+          fetch("http://localhost:3000/jp-sideList"),
         ]);
 
         const data1 = await menuCategoryResponse.json();
@@ -60,7 +81,11 @@ function App() {
         const data8 = await ENcutletListResponse.json();
         const data9 = await ENnoodleListResponse.json();
         const data10 = await ENsideListResponse.json();
-
+        const data11 = await JPmenuCategoryResponse.json();
+        const data12 = await JPsetListResponse.json();
+        const data13 = await JPcutletListResponse.json();
+        const data14 = await JPnoodleListResponse.json();
+        const data15 = await JPsideListResponse.json();
 
         setCategoryData(data1);
         setSetData(data2);
@@ -72,9 +97,15 @@ function App() {
         setENCutletData(data8);
         setENNoodleData(data9);
         setENSideData(data10);
+        setJPCategoryData(data11);
+        setJPSetData(data12);
+        setJPCutletData(data13);
+        setJPNoodleData(data14);
+        setJPSideData(data15);
 
         setAllMenuLists([...data2, ...data3, ...data4, ...data5]); // 데이터 병합: set, cutlet, noodle, side
         setENAllMenuLists([...data7, ...data8, ...data9, ...data10]); // 데이터 병합: ENset, ENcutlet, ENnoodle, ENside
+        setJPAllMenuLists([...data12, ...data13, ...data14, ...data15]); // 데이터 병합: JPset, JPcutlet, JPnoodle, JPside
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -87,9 +118,11 @@ function App() {
 
   const [allMenuLists, setAllMenuLists] = useState([]);
   const [ENallMenuLists, setENAllMenuLists] = useState([]);
+  const [JPallMenuLists, setJPAllMenuLists] = useState([]);
 
   const boughtItems = allMenuLists.filter((item) => item.isCart > 0);
   const ENboughtItems = ENallMenuLists.filter((item) => item.isCart > 0);
+  const JPboughtItems = JPallMenuLists.filter((item) => item.isCart > 0);
 
   // 수량 +1
   const handleIncrement = (itemId) => {
@@ -145,6 +178,7 @@ function App() {
     );
   };
 
+  // EN
   // 수량 +1
   const ENhandleIncrement = (itemId) => {
     setENAllMenuLists((prevData) =>
@@ -191,6 +225,61 @@ function App() {
   //  코드 2: cart에 담기기 전에만 메뉴를 선택해서 수량을 +1하고, 이후에는 cart의 +를 사용해야만 수량이 추가됨
   const ENisCart = (itemId) => {
     setENAllMenuLists((prevData) =>
+      prevData.map((item) =>
+        item.id === itemId
+          ? { ...item, isCart: item.isCart === 0 ? 1 : item.isCart }
+          : item
+      )
+    );
+  };
+
+  // JP
+  // 수량 +1
+  const JPhandleIncrement = (itemId) => {
+    setJPAllMenuLists((prevData) =>
+      prevData.map((item) =>
+        item.id === itemId ? { ...item, isCart: item.isCart + 1 } : item
+      )
+    );
+  };
+
+  // 수량 -1
+  const JPhandleDecrease = (itemId) => {
+    setJPAllMenuLists((prevData) =>
+      prevData.map((item) =>
+        item.id === itemId ? { ...item, isCart: item.isCart - 1 } : item
+      )
+    );
+  };
+
+  // 삭제
+  const JPisCartZero = (itemId) => {
+    setJPAllMenuLists((prevData) =>
+      prevData.map((item) =>
+        item.id === itemId ? { ...item, isCart: 0 } : item
+      )
+    );
+  };
+
+  // isCart 전체 삭제
+  const JPallCartZero = () => {
+    setJPAllMenuLists(allMenuLists.map((item) => ({ ...item, isCart: 0 })));
+  };
+
+  //  코드 1: 메뉴를 직접 선택해도 cart에 수량을 추가할 수 있음
+  /*
+  const JPisCart = (itemId) => {
+    setJPAllMenuLists((prevData) =>
+      prevData.map((item) =>
+        item.id === itemId ? { ...item, isCart: item.isCart + 1 } : item
+      )
+    );
+  };
+  */
+
+  //  코드 2: cart에 담기기 전에만 메뉴를 선택해서 수량을 +1하고, 이후에는 cart의 +를 사용해야만 수량이 추가됨
+  const JPisCart = (itemId) => {
+    setJPAllMenuLists((prevData) =>
       prevData.map((item) =>
         item.id === itemId
           ? { ...item, isCart: item.isCart === 0 ? 1 : item.isCart }
@@ -254,6 +343,33 @@ function App() {
                   handleDecrease={ENhandleDecrease}
                   isCartZero={ENisCartZero}
                   allCartZero={ENallCartZero}
+                />
+              </>
+            }
+          />
+          <Route
+            path="/JPmenu"
+            element={
+              <>
+                <JPHeader />
+                <JPMenuCategory
+                  categoryData={JPcategoryData}
+                  setSelectedCategory={setSelectedCategory}
+                />
+                <JPMenuList
+                  isCart={JPisCart}
+                  setData={JPsetData}
+                  cutletData={JPcutletData}
+                  noodleData={JPnoodleData}
+                  sideData={JPsideData}
+                  selectedCategory={selectedCategory}
+                />
+                <JPCart
+                  items={JPboughtItems}
+                  handleIncrement={JPhandleIncrement}
+                  handleDecrease={JPhandleDecrease}
+                  isCartZero={JPisCartZero}
+                  allCartZero={JPallCartZero}
                 />
               </>
             }

@@ -29,14 +29,14 @@ function Header() {
   };
   return (
     <Wrapper>
-      <Title>HA.MI DONCATSU</Title>
+      <Title>HA.MI DONKATSU</Title>
       <img
         src="/src/images/Home.svg"
         style={{
           width: "75px",
           position: "absolute",
           top: "40px",
-          right: "calc(100% - 1350px)",
+          right: "calc(100% - 1500px)",
           cursor: "pointer",
         }}
         onClick={toHome}

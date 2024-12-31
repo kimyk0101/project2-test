@@ -41,7 +41,7 @@ const Img = styled.img`
   border-radius: 10px;
 `;
 const ItemInfo = styled.div`
-  font-size: 30px;
+  font-size: 27px;
   font-weight: bold;
 `;
 
@@ -76,7 +76,7 @@ function MenuList({
         <MenuBox key={item.id} onClick={() => toCart(item.id)}>
           <Img src={`/src/images/${item.id}.jpeg`} alt={item.name}></Img>
           <ItemInfo>{item.name}</ItemInfo>
-          <ItemInfo>- {item.price}원</ItemInfo>
+          <ItemInfo>{item.price}won</ItemInfo>
         </MenuBox>
       ))}
     </Wrap>

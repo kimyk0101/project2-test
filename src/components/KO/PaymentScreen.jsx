@@ -2,9 +2,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import OrderHistory from "/src/components/OrderHistory";
-import PaymentSuccess from "/src/components/PaymentSuccess";
-import KioskCountdownTimer from "/src/components/KioskCountdownTimer";
+import OrderHistory from "/src/components/KO/OrderHistory";
+import PaymentSuccess from "/src/components/KO/PaymentSuccess";
+import KioskCountdownTimer from "/src/components/KO/KioskCountdownTimer";
 import styled from "styled-components";
 import { TailSpin } from "react-loader-spinner";
 import { QRCodeCanvas } from "qrcode.react";

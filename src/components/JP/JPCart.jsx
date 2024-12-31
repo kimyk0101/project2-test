@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import PaymentScreen from "/src/components/PaymentScreen";
+import PaymentScreen from "/src/components/JP/JPPaymentScreen";
 
 /* styled-components */
 const Wrapper = styled.div`
@@ -22,7 +22,7 @@ const StyledH1 = styled.h2`
   padding: 0;
   background-color: #4c4b4e;
   color: white;
-  font-size: 50px;
+  font-size: 34px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,7 +77,7 @@ const Button1 = styled.button`
   color: white;
   padding: 10px 54px;
   cursor: pointer;
-  font-size: 40px;
+  font-size: 23px;
   font-weight: bold;
   font-family: "Varela Round", "Jua", serif;
 `;
@@ -91,7 +91,7 @@ const Button2 = styled.button`
   color: white;
   padding: 10px 54px;
   cursor: pointer;
-  font-size: 40px;
+  font-size: 24px;
   font-weight: bold;
   font-family: "Varela Round", "Jua", serif;
 `;
@@ -151,7 +151,7 @@ function Cart({
 
   return (
     <Wrapper>
-      <StyledH1>장 바 구 니</StyledH1>
+      <StyledH1>カート</StyledH1>
       <StyledUl>
         {items.map((item) => (
           <li key={item.id}>
@@ -166,17 +166,17 @@ function Cart({
               </ButtonAmountControl>
               &nbsp;&nbsp;
               <ButtonAmountControl onClick={() => makeCartZero(item.id)}>
-                삭제
+                さくじょ
               </ButtonAmountControl>
             </RightSide>
           </li>
         ))}
       </StyledUl>
-      <StyledH1>주문수량 : {totalAmount}개</StyledH1>
-      <StyledH1>총 금액 : {totalPrice}원</StyledH1>
+      <StyledH1>ごうけいすうりょう : {totalAmount}</StyledH1>
+      <StyledH1>ごうけいきんがく : {totalPrice}ウォン</StyledH1>
       <Style02>
-        <Button1 onClick={() => makeAllZero()}>전체삭제</Button1>
-        <Button2 onClick={handlePaymentButtonClick}>결제</Button2>
+        <Button1 onClick={() => makeAllZero()}>すべてさくじょ</Button1>
+        <Button2 onClick={handlePaymentButtonClick}>けっさい</Button2>
       </Style02>
       {isPaymentScreenVisible ? (
         <PaymentScreen

@@ -4,13 +4,6 @@ import { QRCodeCanvas } from "qrcode.react";
 
 function MainScreen() {
   const navigate = useNavigate();
-  // 화면 터치 시 다음 화면으로 이동
-  const handleTouchKO = () => {
-    navigate("/menu"); // 한국어 메뉴 화면으로 이동
-  };
-  const handleTouchEN = () => {
-    navigate("/ENmenu"); // 영어 메뉴 화면으로 이동
-  };
 
   const videoRef = useRef(null); // video 태그 참조
   const [isPlaying, setIsPlaying] = useState(true); // 재생 상태 관리
@@ -66,7 +59,6 @@ function MainScreen() {
         cursor: "pointer",
       }}
     >
-
       {/* 동영상 추가 */}
       <video
         ref={videoRef}
@@ -154,16 +146,19 @@ function MainScreen() {
       <div
         onClick={() => {
           switch (selectedLanguage) {
-              case 'ko':
-                  navigate('/menu');
-                  break;
-              case 'en':
-                  navigate('/ENmenu');
-                  break;
-              default:
-                  console.error('Invalid language');
+            case "ko":
+              navigate("/menu");
+              break;
+            case "en":
+              navigate("/ENmenu");
+              break;
+            case "jp":
+              navigate("/JPmenu");
+              break;
+            default:
+              console.error("Invalid language");
           }
-      }}
+        }}
         style={{
           position: "absolute",
           width: "1100px",

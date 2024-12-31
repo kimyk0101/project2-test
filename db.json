@@ -98,6 +98,56 @@
   { "id": 306, "name": "Shrimp Tempura", "price": 3000, "isCart": 0},
   { "id": 307, "name": "Croquette", "price": 2500, "isCart": 0},
   { "id": 308, "name": "Sausage", "price": 2000, "isCart": 0}
+],
+"jp-menuCategory": [
+  { "id": "A", "title": "セット"},
+  { "id": "B", "title": "豚カツ"},
+  { "id": "C", "title": "麺・ご飯"},
+  { "id": "D", "title": "サイドメニュー"}
+],
+"jp-setList": [
+  { "id": 1, "name": "こどもセット", "price": 9000, "isCart": 0},
+  { "id": 2, "name": "昔ながらのとんかつセット", "price": 13000, "isCart": 0},
+  { "id": 3, "name": "王様とんかつセット", "price": 13000, "isCart": 0},
+  { "id": 4, "name": "チーズとんかつセット", "price": 13000, "isCart": 0},
+  { "id": 5, "name": "ロースカツセット", "price": 13000, "isCart": 0},
+  { "id": 6, "name": "ヒレカツセット", "price": 13000, "isCart": 0},
+  { "id": 7, "name": "魚カツセット ", "price": 13000, "isCart": 0},
+  { "id": 8, "name": "ロゼカツセット", "price": 13000, "isCart": 0}
+],
+"jp-cutletList" : [
+  { "id": 101, "name": "昔ながらのとんかつ", "price": 11000, "isCart": 0},
+  { "id": 102, "name": "王様とんかつ", "price": 15000, "isCart": 0},
+  { "id": 103, "name": "チーズとんかつ", "price": 12000, "isCart": 0},
+  { "id": 104, "name": "チキンカツ", "price": 11000, "isCart": 0},
+  { "id": 105, "name": "ロースカツ", "price": 11000, "isCart": 0},
+  { "id": 106, "name": "ヒレカツ", "price": 12000, "isCart": 0},
+  { "id": 107, "name": "魚カツ", "price": 11000, "isCart": 0},
+  { "id": 108, "name": "辛口とんかつ", "price": 12000, "isCart": 0},
+  { "id": 109, "name": "ロゼカツ", "price": 13000, "isCart": 0},
+  { "id": 110, "name": "ハンバーグステーキ", "price": 13000, "isCart": 0}
+],
+"jp-noodleList" : [
+  { "id": 201, "name": "カレーうどん", "price": 8000, "isCart": 0},
+  { "id": 202, "name": "かつおうどん", "price": 8000, "isCart": 0},
+  { "id": 203, "name": "えびうどん", "price": 8000, "isCart": 0},
+  { "id": 204, "name": "油揚げうどん", "price": 8000, "isCart": 0},
+  { "id": 205, "name": "キムチうどん", "price": 8000, "isCart": 0},
+  { "id": 206, "name": "冷やしそば", "price": 7000, "isCart": 0},
+  { "id": 207, "name": "温かいそば", "price": 7000, "isCart": 0},
+  { "id": 208, "name": "オムライス", "price": 10000, "isCart": 0},
+  { "id": 209, "name": "キムチチャーハン", "price": 9000, "isCart": 0},
+  { "id": 210, "name": "エビチャーハン", "price": 9000, "isCart": 0}
+],
+"jp-sideList" :[
+  { "id": 301, "name": "コーラ", "price": 2000, "isCart": 0},
+  { "id": 302, "name": "サイダー", "price": 2000, "isCart": 0},
+  { "id": 303, "name": "ご飯大盛り", "price": 1000, "isCart": 0},
+  { "id": 304, "name": "スープ", "price": 1000, "isCart": 0},
+  { "id": 305, "name": "味噌汁", "price": 1000, "isCart": 0},
+  { "id": 306, "name": "えびフライ", "price": 3000, "isCart": 0},
+  { "id": 307, "name": "コロッケ", "price": 2500, "isCart": 0},
+  { "id": 308, "name": "ソーセージ", "price": 2000, "isCart": 0}
 ]
 }
 

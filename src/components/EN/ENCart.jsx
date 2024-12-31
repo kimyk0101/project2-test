@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import PaymentScreen from "/src/components/PaymentScreen";
+import PaymentScreen from "/src/components/EN/ENPaymentScreen";
 
 /* styled-components */
 const Wrapper = styled.div`
@@ -22,7 +22,7 @@ const StyledH1 = styled.h2`
   padding: 0;
   background-color: #4c4b4e;
   color: white;
-  font-size: 50px;
+  font-size: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,7 +77,7 @@ const Button1 = styled.button`
   color: white;
   padding: 10px 54px;
   cursor: pointer;
-  font-size: 40px;
+  font-size: 35px;
   font-weight: bold;
   font-family: "Varela Round", "Jua", serif;
 `;
@@ -91,7 +91,7 @@ const Button2 = styled.button`
   color: white;
   padding: 10px 54px;
   cursor: pointer;
-  font-size: 40px;
+  font-size: 35px;
   font-weight: bold;
   font-family: "Varela Round", "Jua", serif;
 `;
