@@ -60,7 +60,7 @@ function PaymentSuccess({ orderDetails }) {
         {/* {({ remainingTime }) => remainingTime} */}
       </CountdownCircleTimer>
       <div className="order-summary">
-        <h3>お支払いが完了しました！</h3>
+        <h3>ちゅうもんサマリー</h3>
         <p>チュウモン バンゴウ : {orderDetails.id || "정보 없음"}</p>
         <p>チュウモン ニチジ : {orderDetails.date || "정보 없음"}</p>
         <p>ゴウケイ キンガク : {orderDetails.totalPrice}ウォン</p>
