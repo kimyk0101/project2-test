@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 /* styled-components */
 const Wrapping = styled.div`
-  // border: 1px solid black;
   width: 1360px;
   height: 100px;
   background-color: #f47e28;
@@ -17,8 +16,7 @@ const CategoryBox = styled.span`
   height: 100%;
   color: white;
   background-color: #b44b1e;
-  // border: 1px solid #f47e28;
-  // margin: 0 2px;
+  border: 1px dashed #4c4b4e;
   border-radius: 10px;
   font-size: 47px;
   font-weight: bold;
@@ -26,13 +24,15 @@ const CategoryBox = styled.span`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  &:hover {
+    border: 6px solid #0021f3;
+  }
 `;
 
 /* MenuCategory-components */
 function MenuCategory({ categoryData, setSelectedCategory }) {
   return (
     <Wrapping>
-      {/* 메뉴 카테고리 리스트 */}
       {categoryData.map((item) => (
         <CategoryBox
           key={item.id}

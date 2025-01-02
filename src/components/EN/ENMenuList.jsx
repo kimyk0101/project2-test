@@ -3,15 +3,12 @@ import styled from "styled-components";
 
 /* styled-components */
 const Wrap = styled.div`
-  // border: 1px solid yellow;
   width: 1360px;
   height: 810px;
   background-color: #f47e28;
   margin: 0;
   padding: 10px 0px 0px 0px;
   display: flex;
-  // justify-content: center;
-  // align-items: center;
   flex-wrap: wrap;
   overflow: auto;
 `;
@@ -26,11 +23,14 @@ const MenuBox = styled.span`
   font-size: 5px;
   font-color: black;
   display: flex;
-  flex-direction: column; /* 내용을 세로로 배열 */
-  justify-content: space-between; /* 내용을 세로로 가운데 정렬 */
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  box-sizing: border-box; /* 요소의 너비와 높이에 설정한 값이 콘텐츠 영역, 패딩, 테두리를 모두 포함하는 값으로 인식 */
+  box-sizing: border-box;
   cursor: pointer;
+  &:hover {
+    border: 8px solid #0021f3;
+  }
 `;
 const Img = styled.img`
   width: 100%;
@@ -63,7 +63,7 @@ function MenuList({
       ? noodleData
       : selectedCategory === "D"
       ? sideData
-      : setData; //  []으로 설정하면 첫 화면에 아무런 리스트도 안나오게끔, setData는 setData가 기본으로 나오게끔 설정
+      : setData;
 
   const toCart = (itemId) => {
     isCart(itemId);
@@ -71,7 +71,6 @@ function MenuList({
 
   return (
     <Wrap>
-      {/* 선택된 카테고리의 메뉴 목록 */}
       {filteredData.map((item) => (
         <MenuBox key={item.id} onClick={() => toCart(item.id)}>
           <Img src={`/src/images/${item.id}.jpeg`} alt={item.name}></Img>

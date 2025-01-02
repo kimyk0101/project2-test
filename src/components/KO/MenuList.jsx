@@ -3,15 +3,12 @@ import styled from "styled-components";
 
 /* styled-components */
 const Wrap = styled.div`
-  // border: 1px solid yellow;
   width: 1360px;
   height: 810px;
   background-color: #f47e28;
   margin: 0;
   padding: 10px 0px 0px 0px;
   display: flex;
-  // justify-content: center;
-  // align-items: center;
   flex-wrap: wrap;
   overflow: auto;
 `;
@@ -31,6 +28,9 @@ const MenuBox = styled.span`
   align-items: center;
   box-sizing: border-box; /* 요소의 너비와 높이에 설정한 값이 콘텐츠 영역, 패딩, 테두리를 모두 포함하는 값으로 인식 */
   cursor: pointer;
+  &:hover {
+    border: 8px solid #0021f3;
+  }
 `;
 const Img = styled.img`
   width: 100%;

@@ -1,6 +1,32 @@
 /* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
-// import { useMemo } from "react";
+import styled from "styled-components";
+
+const Order = styled.section`
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+`;
+
+const OrderList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+
+  li {
+    padding: 7px;
+    &:before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-right: 5px;
+      border-radius: 50%;
+      background-color: #f47e28;
+    }
+  }
+`;
 
 function OrderHistory({ orders }) {
   return (
@@ -17,22 +43,29 @@ function OrderHistory({ orders }) {
 function OrderItem({ order }) {
   return (
     <div className="order-item">
-      <p>
-        <strong>チュウモン スウリョウ : {order.totalAmount}</strong>
-        <br />
-        <strong>チュウモン キングカク : {order.totalPrice}ウォン</strong>
-      </p>
-      <h3>チュウモン バンゴウ : {order.id}</h3>
+      <Order>
+        <OrderList>
+          <li>&nbsp; チュウモン スウリョウ : {order.totalAmount}</li>
 
-      <p>チュウモン ニチジ : {order.date2}</p>
-      <h4>コウニュウ リスト</h4>
-      <ul>
+          <li>&nbsp; チュウモン キングカク : {order.totalPrice}ウォン</li>
+        </OrderList>
+      </Order>
+
+      <h2>チュウモン バンゴウ</h2>
+      <Order>{order.id}</Order>
+
+      <h2>チュウモン ニチジ</h2>
+      <Order>{order.date2}</Order>
+
+      <h2>コウニュウ リスト</h2>
+      <OrderList>
         {order.items.map((item) => (
           <li key={item.id}>
-            {item.name} - {item.isCart} ({item.price * item.isCart}ウォン)
+            &nbsp; {item.name} - {item.isCart} ({item.price * item.isCart}
+            ウォン)
           </li>
         ))}
-      </ul>
+      </OrderList>
     </div>
   );
 }

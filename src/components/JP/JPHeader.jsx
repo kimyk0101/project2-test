@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 /* styled-components */
 const Wrapper = styled.div`
@@ -19,29 +20,34 @@ const Title = styled.h1`
   font-weight: bold;
 `;
 
+const HomeButton = styled.img`
+  width: 75px;
+  position: absolute;
+  top: 40px;
+  right: calc(100% - 1500px);
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.5);
+  }
+`;
+
 /* Header-components */
-function Header() {
+function Header({ allCartZero }) {
   const navigate = useNavigate();
 
-  // 홈 화면으로
   const toHome = () => {
+    allCartZero();
     navigate("/");
   };
   return (
     <Wrapper>
       <Title>HA.MI DONKATSU</Title>
-      <img
-        src="/src/images/Home.svg"
-        style={{
-          width: "75px",
-          position: "absolute",
-          top: "40px",
-          right: "calc(100% - 1500px)",
-          cursor: "pointer",
-        }}
-        onClick={toHome}
-      />
+      <HomeButton src="/src/images/Home.svg" onClick={toHome} />
     </Wrapper>
   );
 }
+
+Header.propTypes = {
+  allCartZero: PropTypes.func.isRequired,
+};
 export default Header;

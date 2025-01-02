@@ -1,6 +1,32 @@
 /* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
-// import { useMemo } from "react";
+import styled from "styled-components";
+
+const Order = styled.section`
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+`;
+
+const OrderList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+
+  li {
+    padding: 7px;
+    &:before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-right: 5px;
+      border-radius: 50%;
+      background-color: #f47e28;
+    }
+  }
+`;
 
 function OrderHistory({ orders }) {
   return (
@@ -17,22 +43,28 @@ function OrderHistory({ orders }) {
 function OrderItem({ order }) {
   return (
     <div className="order-item">
-      <p>
-        <strong>Quantity Ordered : {order.totalAmount}</strong>
-        <br />
-        <strong>Order Amount : {order.totalPrice}won</strong>
-      </p>
-      <h3>Order Number : {order.id}</h3>
+      <Order>
+        <OrderList>
+          <li>&nbsp; Quantity Ordered : {order.totalAmount}</li>
 
-      <p>Order Date : {order.date2}</p>
-      <h4>Purchase List</h4>
-      <ul>
+          <li>&nbsp; Order Amount : {order.totalPrice}won</li>
+        </OrderList>
+      </Order>
+
+      <h2>Order Number</h2>
+      <Order>{order.id}</Order>
+
+      <h2>Order Date</h2>
+      <Order>{order.date2}</Order>
+
+      <h2>Purchase List</h2>
+      <OrderList>
         {order.items.map((item) => (
           <li key={item.id}>
-            {item.name} - {item.isCart} ({item.price * item.isCart}won)
+            &nbsp; {item.name} - {item.isCart} ({item.price * item.isCart}won)
           </li>
         ))}
-      </ul>
+      </OrderList>
     </div>
   );
 }

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Swal from "sweetalert2";
 
 import PaymentScreen from "/src/components/KO/PaymentScreen";
 
 /* styled-components */
 const Wrapper = styled.div`
-  // border: 1px solid black;
   width: 560px;
   height: 740px;
   position: absolute;
@@ -15,7 +15,6 @@ const Wrapper = styled.div`
   background-color: white;
 `;
 const StyledH1 = styled.h2`
-  // border: 1px solid black;
   height: 100px;
   width: 100%;
   margin: 0;
@@ -28,7 +27,6 @@ const StyledH1 = styled.h2`
   align-items: center;
 `;
 const StyledUl = styled.ul`
-  // border: 1px solid blue;
   padding: 10px 0 0 20px;
   margin: 0;
   height: 510px;
@@ -48,9 +46,11 @@ const ButtonAmountControl = styled.button`
   cursor: pointer;
   font-size: 20px;
   font-weight: bold;
+  &:active {
+    border: 2px solid #0021f3;
+  }
 `;
 const RightSide = styled.a`
-  // border: 1px solid gray;
   margin: 0;
   padding: 0;
   display: flex;
@@ -62,13 +62,12 @@ const Menu = styled.a`
   font-size: 30px;
 `;
 const Style02 = styled.a`
-  // border: 1px solid red;
   display: flex;
   height: 100px;
   width: 560px;
 `;
 const Button1 = styled.button`
-  border: 1px solid #a64f03;
+  border: 1px solid #4c4b4e;
   height: 100%;
   width: 50%;
   margin: 0;
@@ -80,9 +79,12 @@ const Button1 = styled.button`
   font-size: 40px;
   font-weight: bold;
   font-family: "Varela Round", "Jua", serif;
+  &:hover {
+    border: 6px solid #0021f3;
+  }
 `;
 const Button2 = styled.button`
-  border: 1px solid #a64f03;
+  border: 1px solid #4c4b4e;
   height: 100%;
   width: 50%;
   margin: 0;
@@ -94,6 +96,9 @@ const Button2 = styled.button`
   font-size: 40px;
   font-weight: bold;
   font-family: "Varela Round", "Jua", serif;
+  &:hover {
+    border: 6px solid #0021f3;
+  }
 `;
 
 /* Cart-components */
@@ -146,7 +151,15 @@ function Cart({
 
   const [isPaymentScreenVisible, setIsPaymentScreenVisible] = useState(false);
   const handlePaymentButtonClick = () => {
-    setIsPaymentScreenVisible(true);
+    if (totalAmount === 0 || totalPrice === 0) {
+      Swal.fire({
+        icon: "info",
+        title: "장바구니가 비어있습니다.",
+        text: "상품을 추가해주세요.",
+      });
+    } else {
+      setIsPaymentScreenVisible(true);
+    }
   };
 
   return (
@@ -184,6 +197,8 @@ function Cart({
           totalAmount={totalAmount}
           totalPrice={totalPrice}
           items={items}
+          // PaymentScreen에 makeAllZero를 사용하기 위해 prop으로 전달
+          makeAllZero={makeAllZero}
         />
       ) : null}
     </Wrapper>

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// KO
+
 import MainScreen from "/src/components/MainScreen";
+// KO
 import Header from "/src/components/KO/Header";
 import MenuCategory from "/src/components/KO/MenuCategory";
 import MenuList from "/src/components/KO/MenuList";
@@ -23,11 +24,13 @@ function App() {
   const [cutletData, setCutletData] = useState([]);
   const [noodleData, setNoodleData] = useState([]);
   const [sideData, setSideData] = useState([]);
+
   const [ENcategoryData, setENCategoryData] = useState([]);
   const [ENsetData, setENSetData] = useState([]);
   const [ENcutletData, setENCutletData] = useState([]);
   const [ENnoodleData, setENNoodleData] = useState([]);
   const [ENsideData, setENSideData] = useState([]);
+
   const [JPcategoryData, setJPCategoryData] = useState([]);
   const [JPsetData, setJPSetData] = useState([]);
   const [JPcutletData, setJPCutletData] = useState([]);
@@ -43,11 +46,13 @@ function App() {
           cutletListResponse,
           noodleListResponse,
           sideListResponse,
+
           ENmenuCategoryResponse,
           ENsetListResponse,
           ENcutletListResponse,
           ENnoodleListResponse,
           ENsideListResponse,
+
           JPmenuCategoryResponse,
           JPsetListResponse,
           JPcutletListResponse,
@@ -59,11 +64,13 @@ function App() {
           fetch("http://localhost:3000/cutletList"),
           fetch("http://localhost:3000/noodleList"),
           fetch("http://localhost:3000/sideList"),
+
           fetch("http://localhost:3000/en-menuCategory"),
           fetch("http://localhost:3000/en-setList"),
           fetch("http://localhost:3000/en-cutletList"),
           fetch("http://localhost:3000/en-noodleList"),
           fetch("http://localhost:3000/en-sideList"),
+
           fetch("http://localhost:3000/jp-menuCategory"),
           fetch("http://localhost:3000/jp-setList"),
           fetch("http://localhost:3000/jp-cutletList"),
@@ -76,11 +83,13 @@ function App() {
         const data3 = await cutletListResponse.json();
         const data4 = await noodleListResponse.json();
         const data5 = await sideListResponse.json();
+
         const data6 = await ENmenuCategoryResponse.json();
         const data7 = await ENsetListResponse.json();
         const data8 = await ENcutletListResponse.json();
         const data9 = await ENnoodleListResponse.json();
         const data10 = await ENsideListResponse.json();
+
         const data11 = await JPmenuCategoryResponse.json();
         const data12 = await JPsetListResponse.json();
         const data13 = await JPcutletListResponse.json();
@@ -92,11 +101,13 @@ function App() {
         setCutletData(data3);
         setNoodleData(data4);
         setSideData(data5);
+
         setENCategoryData(data6);
         setENSetData(data7);
         setENCutletData(data8);
         setENNoodleData(data9);
         setENSideData(data10);
+
         setJPCategoryData(data11);
         setJPSetData(data12);
         setJPCutletData(data13);
@@ -124,7 +135,8 @@ function App() {
   const ENboughtItems = ENallMenuLists.filter((item) => item.isCart > 0);
   const JPboughtItems = JPallMenuLists.filter((item) => item.isCart > 0);
 
-  // 수량 +1
+  // KO
+  // KO 수량 +1
   const handleIncrement = (itemId) => {
     setAllMenuLists((prevData) =>
       prevData.map((item) =>
@@ -133,7 +145,7 @@ function App() {
     );
   };
 
-  // 수량 -1
+  // KO 수량 -1
   const handleDecrease = (itemId) => {
     setAllMenuLists((prevData) =>
       prevData.map((item) =>
@@ -142,7 +154,7 @@ function App() {
     );
   };
 
-  // 삭제
+  // KO 삭제
   const isCartZero = (itemId) => {
     setAllMenuLists((prevData) =>
       prevData.map((item) =>
@@ -151,12 +163,12 @@ function App() {
     );
   };
 
-  // isCart 전체 삭제
+  // KO isCart 전체 삭제
   const allCartZero = () => {
     setAllMenuLists(allMenuLists.map((item) => ({ ...item, isCart: 0 })));
   };
 
-  //  코드 1: 메뉴를 직접 선택해도 cart에 수량을 추가할 수 있음
+  //  KO 코드 1: 메뉴를 직접 선택해도 cart에 수량을 추가할 수 있음
   /*
   const isCart = (itemId) => {
     setAllMenuLists((prevData) =>
@@ -167,7 +179,7 @@ function App() {
   };
   */
 
-  //  코드 2: cart에 담기기 전에만 메뉴를 선택해서 수량을 +1하고, 이후에는 cart의 +를 사용해야만 수량이 추가됨
+  //  KO 코드 2: cart에 담기기 전에만 메뉴를 선택해서 수량을 +1하고, 이후에는 cart의 +를 사용해야만 수량이 추가됨
   const isCart = (itemId) => {
     setAllMenuLists((prevData) =>
       prevData.map((item) =>
@@ -179,7 +191,7 @@ function App() {
   };
 
   // EN
-  // 수량 +1
+  // EN 수량 +1
   const ENhandleIncrement = (itemId) => {
     setENAllMenuLists((prevData) =>
       prevData.map((item) =>
@@ -188,7 +200,7 @@ function App() {
     );
   };
 
-  // 수량 -1
+  // EN 수량 -1
   const ENhandleDecrease = (itemId) => {
     setENAllMenuLists((prevData) =>
       prevData.map((item) =>
@@ -197,7 +209,7 @@ function App() {
     );
   };
 
-  // 삭제
+  // EN 삭제
   const ENisCartZero = (itemId) => {
     setENAllMenuLists((prevData) =>
       prevData.map((item) =>
@@ -206,23 +218,12 @@ function App() {
     );
   };
 
-  // isCart 전체 삭제
+  // EN isCart 전체 삭제
   const ENallCartZero = () => {
-    setENAllMenuLists(allMenuLists.map((item) => ({ ...item, isCart: 0 })));
+    setENAllMenuLists(ENallMenuLists.map((item) => ({ ...item, isCart: 0 })));
   };
 
-  //  코드 1: 메뉴를 직접 선택해도 cart에 수량을 추가할 수 있음
-  /*
-  const ENisCart = (itemId) => {
-    setENAllMenuLists((prevData) =>
-      prevData.map((item) =>
-        item.id === itemId ? { ...item, isCart: item.isCart + 1 } : item
-      )
-    );
-  };
-  */
-
-  //  코드 2: cart에 담기기 전에만 메뉴를 선택해서 수량을 +1하고, 이후에는 cart의 +를 사용해야만 수량이 추가됨
+  //  EN isCart
   const ENisCart = (itemId) => {
     setENAllMenuLists((prevData) =>
       prevData.map((item) =>
@@ -234,7 +235,7 @@ function App() {
   };
 
   // JP
-  // 수량 +1
+  // JP 수량 +1
   const JPhandleIncrement = (itemId) => {
     setJPAllMenuLists((prevData) =>
       prevData.map((item) =>
@@ -243,7 +244,7 @@ function App() {
     );
   };
 
-  // 수량 -1
+  // JP 수량 -1
   const JPhandleDecrease = (itemId) => {
     setJPAllMenuLists((prevData) =>
       prevData.map((item) =>
@@ -252,7 +253,7 @@ function App() {
     );
   };
 
-  // 삭제
+  // JP 삭제
   const JPisCartZero = (itemId) => {
     setJPAllMenuLists((prevData) =>
       prevData.map((item) =>
@@ -261,23 +262,12 @@ function App() {
     );
   };
 
-  // isCart 전체 삭제
+  // JP isCart 전체 삭제
   const JPallCartZero = () => {
-    setJPAllMenuLists(allMenuLists.map((item) => ({ ...item, isCart: 0 })));
+    setJPAllMenuLists(JPallMenuLists.map((item) => ({ ...item, isCart: 0 })));
   };
 
-  //  코드 1: 메뉴를 직접 선택해도 cart에 수량을 추가할 수 있음
-  /*
-  const JPisCart = (itemId) => {
-    setJPAllMenuLists((prevData) =>
-      prevData.map((item) =>
-        item.id === itemId ? { ...item, isCart: item.isCart + 1 } : item
-      )
-    );
-  };
-  */
-
-  //  코드 2: cart에 담기기 전에만 메뉴를 선택해서 수량을 +1하고, 이후에는 cart의 +를 사용해야만 수량이 추가됨
+  //  JP isCart
   const JPisCart = (itemId) => {
     setJPAllMenuLists((prevData) =>
       prevData.map((item) =>
@@ -297,7 +287,8 @@ function App() {
             path="/menu"
             element={
               <>
-                <Header />
+                {/* Header에 prop으로 '전체삭제' 함수를 사용하기 위해 전달 */}
+                <Header allCartZero={allCartZero} setData={setData} />
                 <MenuCategory
                   categoryData={categoryData}
                   setSelectedCategory={setSelectedCategory}
@@ -324,7 +315,7 @@ function App() {
             path="/ENmenu"
             element={
               <>
-                <ENHeader />
+                <ENHeader allCartZero={ENallCartZero} />
                 <ENMenuCategory
                   categoryData={ENcategoryData}
                   setSelectedCategory={setSelectedCategory}
@@ -351,7 +342,7 @@ function App() {
             path="/JPmenu"
             element={
               <>
-                <JPHeader />
+                <JPHeader allCartZero={JPallCartZero} />
                 <JPMenuCategory
                   categoryData={JPcategoryData}
                   setSelectedCategory={setSelectedCategory}

@@ -1,8 +1,32 @@
-// eslint-disable react/prop-types
-// import { useMemo } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+
+const PaymentComplete = styled.section`
+  color: #f47e28;
+`;
+const OrderSummary = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+
+  li {
+    padding: 7px;
+    &:before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-right: 5px;
+      border-radius: 50%;
+      background-color: #f47e28;
+    }
+  }
+`;
 
 const Timer = styled.div`
   font-family: "Montserrat";
@@ -35,21 +59,15 @@ const renderTime = ({ remainingTime }) => {
 };
 
 function PaymentSuccess({ orderDetails }) {
-  // const totalPrice = useMemo(() => {
-  //   if (!orderDetails || !orderDetails.items) return 0;
-  //   return orderDetails.items.reduce(
-  //     (sum, item) => sum + (item.price || 0) * (item.count || 0),
-  //     0
-  //   );
-  // }, [orderDetails]);
-
   if (!orderDetails) {
     return <div>Retrieving order information...</div>;
   }
 
   return (
     <div className="payment-success">
-      <h2>Payment complete!</h2>
+      <PaymentComplete>
+        <h2>Payment complete!</h2>
+      </PaymentComplete>
       <CountdownCircleTimer
         isPlaying
         duration={10}
@@ -57,22 +75,27 @@ function PaymentSuccess({ orderDetails }) {
         colorsTime={[7, 5, 2, 0]}
       >
         {renderTime}
-        {/* {({ remainingTime }) => remainingTime} */}
       </CountdownCircleTimer>
+      <br />
       <div className="order-summary">
-        <h3>Order Summary</h3>
-        <p>Order Number : {orderDetails.id || "정보 없음"}</p>
-        <p>Order Date and Time : {orderDetails.date || "정보 없음"}</p>
-        <p>Total Amount : {orderDetails.totalPrice}won</p>
-        <h4>Order Details :</h4>
-        <ul>
+        <h2>Order Summary</h2>
+        <OrderSummary>
+          <li>&nbsp; Order Number : {orderDetails.id || "정보 없음"}</li>
+          <li>
+            &nbsp; Order Date and Time : {orderDetails.date || "정보 없음"}
+          </li>
+          <li>&nbsp; Total Amount : {orderDetails.totalPrice}won</li>
+        </OrderSummary>
+
+        <h2>Order Details</h2>
+        <OrderSummary>
           {orderDetails.items?.map((item) => (
             <li key={item.id}>
-              {item.name} - {item.isCart} (
+              &nbsp; {item.name} - {item.isCart} (
               {(item.isCart * item.price || 0).toLocaleString()}won)
             </li>
           )) || <li>No items in order.</li>}
-        </ul>
+        </OrderSummary>
       </div>
     </div>
   );

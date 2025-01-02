@@ -18,8 +18,10 @@ function MainScreen() {
       setIsPlaying(false);
     }
   };
+
   //    언어 선택
   const [selectedLanguage, setSelectedLanguage] = useState("ko"); // 기본언어는 한국어 설정
+
   // 언어 선택 이벤트 처리
   const handleLanguageChange = (language) => {
     setSelectedLanguage(language);
@@ -45,7 +47,7 @@ function MainScreen() {
     jp: {
       message: "画面をタッチしてメニューに移動",
       play: "再生",
-      pause: "一時停止",
+      pause: "いちじていし",
       languages: "言語選択",
     },
   };
@@ -75,7 +77,7 @@ function MainScreen() {
           zIndex: -1,
         }}
       >
-        <source src="/src/video/video-sufer.mp4.mp4" type="video/mp4" />
+        <source src="/src/video/HA.MI.mp4" type="video/mp4" />
       </video>
 
       {/* 재생/정지 버튼 */}
@@ -115,7 +117,7 @@ function MainScreen() {
           display: "flex",
           flexDirection: "column",
           gap: "10px",
-          fontSize: "25px",
+          fontSize: "30px",
         }}
       >
         <span style={{ fontWeight: "bold", marginBottom: "5px" }}>
@@ -161,13 +163,13 @@ function MainScreen() {
         }}
         style={{
           position: "absolute",
-          width: "1100px",
+          width: "1000px",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           color: "#fff",
           textAlign: "center",
-          fontSize: "70px",
+          fontSize: "60px",
           fontWeight: "bold",
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           padding: "20px",
@@ -190,7 +192,7 @@ function MainScreen() {
       >
         <div style={{ position: "relative", width: "150px", height: "150px" }}>
           <QRCodeCanvas
-            value="http://localhost:5173/menu" // QR 코드로 인코딩할 URL
+            value="https://resonant-cascaron-5a1b5b.netlify.app/" // QR 코드로 인코딩할 URL
             size={150}
             bgColor="#ffffff"
             fgColor="#000000"

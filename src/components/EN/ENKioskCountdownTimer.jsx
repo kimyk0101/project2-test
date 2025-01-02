@@ -33,7 +33,7 @@ function KioskCountdownTimer({ startFrom, onCountdownEnd, children }) {
       Swal.fire({
         icon: "warning",
         title: "Payment time is up!",
-        text: "The payment session has timed out",
+        text: "The payment session has timed out.",
       });
       return;
     }
@@ -41,8 +41,6 @@ function KioskCountdownTimer({ startFrom, onCountdownEnd, children }) {
     const intervalId = setInterval(() => {
       setTimeLeft((prevTime) => prevTime - 1);
     }, 1000);
-
-    //  10초에서 숫자가 빨간색으로 긴박한 느낌주기
     if (timeLeft <= 10) {
       setIsWarning(true);
     }
@@ -59,12 +57,10 @@ function KioskCountdownTimer({ startFrom, onCountdownEnd, children }) {
       <TimeUnit $isWarning={isWarning}>
         {minutes.toString().padStart(2, "0")}
       </TimeUnit>
-      {/* <TimeUnit>{minutes.toString().padStart(2, "0")}</TimeUnit> */}
       <span>:</span>
       <TimeUnit $isWarning={isWarning}>
         {seconds.toString().padStart(2, "0")}
       </TimeUnit>
-      {/* <TimeUnit>{seconds.toString().padStart(2, "0")}</TimeUnit> */}
     </TimerContainer>
   );
 }
