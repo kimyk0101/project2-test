@@ -123,14 +123,16 @@ function PaymentScreen({ onClose, items, totalAmount, totalPrice }) {
     hour: "numeric",
     minute: "numeric",
     second: "numeric",
+    timeZone: "Asia/Seoul",
   };
   const options2 = {
     year: "numeric",
     month: "long",
     day: "numeric",
+    timeZone: "Asia/Seoul",
   };
-  const formattedDate = orderDate.toLocaleString("ko-KR", options);
-  const formattedDate2 = orderDate.toLocaleString("ko-KR", options2);
+  const formattedDate = orderDate.toLocaleString("ja-JP", options);
+  const formattedDate2 = orderDate.toLocaleString("ja-JP", options2);
 
   const orders = [
     {
